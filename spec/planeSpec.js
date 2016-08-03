@@ -19,8 +19,7 @@ describe('plane', function() {
   });
   describe('land', function() {
     it('lands a plane at an aiport', function() {
-      plane.land(airport);
-      expect(airport.clearToLand).toHaveBeenCalled();
+      expect(plane.land(airport)).toEqual(airport);
     });
   });
 });

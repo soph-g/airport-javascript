@@ -6,5 +6,5 @@ Plane.prototype.landed = function() {
 }
 
 Plane.prototype.land = function(airport) {
-  airport.clearToLand(this);
+  return airport;
 }
