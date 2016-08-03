@@ -19,7 +19,17 @@ describe('plane', function() {
   });
   describe('land', function() {
     it('lands a plane at an aiport', function() {
-      expect(plane.land(airport)).toEqual(airport);
+      expect(plane.land).toBeDefined();
+    });
+  });
+
+  describe('location', function() {
+    it('is blank by default', function () {
+      expect(plane.location()).toEqual([]);
+    });
+    it('returns the aiport when plane has landed', function() {
+      plane.land(airport);
+      expect(plane.location()).toEqual([airport]);
     });
   });
 });
