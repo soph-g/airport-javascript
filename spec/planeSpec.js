@@ -25,11 +25,20 @@ describe('plane', function() {
 
   describe('location', function() {
     it('is blank by default', function () {
-      expect(plane.location()).toEqual([]);
+      expect(plane.location).toEqual([]);
     });
     it('returns the aiport when plane has landed', function() {
       plane.land(airport);
-      expect(plane.location()).toEqual([airport]);
+      expect(plane.location).toEqual([airport]);
     });
   });
+
+  describe('takeoff', function() {
+    it('updates plane location', function() {
+      plane.land(airport);
+      plane.takeoff();
+      expect(plane.location).toEqual([]);
+    });
+  });
+
 });

@@ -8,6 +8,7 @@ Airport.prototype.clearToLand = function(plane) {
   plane.land(this);
 };
 
-Airport.prototype.planes = function() {
-  return this.hangar;
+Airport.prototype.clearToTakeOff = function(plane) {
+  this.hangar.pop();
+  return plane
 };

@@ -1,5 +1,5 @@
 var Plane = function() {
-  this.airportLocation = [];
+  this.location = [];
 }
 
 Plane.prototype.landed = function() {
@@ -7,9 +7,9 @@ Plane.prototype.landed = function() {
 }
 
 Plane.prototype.land = function(airport) {
-  this.airportLocation.push(airport);
+  this.location.push(airport);
 }
 
-Plane.prototype.location = function() {
-  return this.airportLocation;
-}
+Plane.prototype.takeoff = function() {
+  this.location.pop();
+};

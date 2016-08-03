@@ -17,13 +17,24 @@ describe('airport', function() {
 
   describe('planes', function() {
     it('is empty by default', function() {
-      expect(airport.planes()).toEqual([]);
+      expect(airport.hangar).toEqual([]);
     });
     it('returns a landed plane', function(){
       airport.clearToLand(plane)
-      expect(airport.planes()).toEqual([plane]);
+      expect(airport.hangar).toEqual([plane]);
     });
 
+  });
+
+  describe('clearToTakeOff', function() {
+    it('clears the plane to take off', function() {
+      expect(airport.clearToTakeOff(plane)).toEqual(plane);
+    });
+    it('removes the plane from the hangar', function() {
+      airport.clearToLand(plane);
+      airport.clearToTakeOff(plane);
+      expect(airport.hangar).toEqual([]);
+    });
   });
 
 });
