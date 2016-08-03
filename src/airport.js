@@ -4,8 +4,12 @@ function Airport() {
 
 
 Airport.prototype.clearToLand = function(plane) {
-  this.hangar.push(plane);
-  plane.land(this);
+  if(weather.isStormy) {
+    throw new Error("error");
+  } else {
+    this.hangar.push(plane);
+    plane.land(this);
+  }
 };
 
 Airport.prototype.clearToTakeOff = function(plane) {

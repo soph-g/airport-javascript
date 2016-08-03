@@ -16,9 +16,9 @@ describe('airport', function() {
       expect(plane.land).toHaveBeenCalled();
     });
     it('does not clear plane to land when weather is stormy', function() {
-      weather.isStormy.and.returnValue(true)
-      expect(airport.clearToLand(plane)).toThrow('error')
-    })
+      weather.isStormy.and.returnValue(true);
+      expect(function() { airport.clearToLand(plane) }).toThrowError('error');
+    });
   });
 
   describe('planes', function() {
@@ -44,3 +44,17 @@ describe('airport', function() {
   });
 
 });
+
+
+
+// beforeEach(function(){
+//   weather.isStormy.and.returnValue(true);
+// });
+//
+// it('does not clear planes for takeoff', function() {
+//   expect(function(){ airport.clearForTakeOff(plane); }).toThrowError('cannot takeoff during storm');
+// });
+//
+// it('does not clear planes for landing', function() {
+//   expect(function(){ airport.clearForLanding(plane); }).toThrowError('cannot land during storm');
+// });
