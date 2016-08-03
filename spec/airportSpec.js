@@ -5,13 +5,14 @@ describe('airport', function() {
   var weather;
 
   beforeEach(function(){
-    airport = new Airport();
-    plane = jasmine.createSpyObj('plane', ['land']);
     weather = jasmine.createSpyObj('weather', ['isStormy'])
+    airport = new Airport(weather);
+    plane = jasmine.createSpyObj('plane', ['land']);
   });
 
   describe('clearToLand', function() {
     it('clears the plane to land', function() {
+      weather.isStormy.and.returnValue(false);
       airport.clearToLand(plane);
       expect(plane.land).toHaveBeenCalled();
     });
@@ -26,6 +27,7 @@ describe('airport', function() {
       expect(airport.hangar).toEqual([]);
     });
     it('returns a landed plane', function(){
+      weather.isStormy.and.returnValue(false);
       airport.clearToLand(plane)
       expect(airport.hangar).toEqual([plane]);
     });
@@ -37,6 +39,7 @@ describe('airport', function() {
       expect(airport.clearToTakeOff(plane)).toEqual(plane);
     });
     it('removes the plane from the hangar', function() {
+      weather.isStormy.and.returnValue(false);
       airport.clearToLand(plane);
       airport.clearToTakeOff(plane);
       expect(airport.hangar).toEqual([]);
