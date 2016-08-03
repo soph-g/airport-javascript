@@ -2,10 +2,12 @@ describe('airport', function() {
 
   var airport;
   var plane;
+  var weather;
 
   beforeEach(function(){
     airport = new Airport();
     plane = jasmine.createSpyObj('plane', ['land']);
+    weather = jasmine.createSpyObj('weather', ['isStormy'])
   });
 
   describe('clearToLand', function() {
@@ -13,6 +15,10 @@ describe('airport', function() {
       airport.clearToLand(plane);
       expect(plane.land).toHaveBeenCalled();
     });
+    it('does not clear plane to land when weather is stormy', function() {
+      weather.isStormy.and.returnValue(true)
+      expect(airport.clearToLand(plane)).toThrow('error')
+    })
   });
 
   describe('planes', function() {
